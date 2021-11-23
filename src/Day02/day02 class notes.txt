@@ -1,0 +1,277 @@
+09/21/2021
+Java Boot Camp
+
+	Topics:
+		17. OOP Inheritance
+		18. Is A vs Has A
+		19. Method Overriding
+		20. Final keyword
+		21. OOP Abstraction
+		22. Abstract Class vs Interface
+		23. OOP Polymorphism
+		24. Reference Type Castings: Upcasting vs DownCasting
+		25. Exceptions: checked & unchecked
+		26. Exception Handlings
+		27. final vs finally vs finalize
+		28. garbage collection & garbage collector
+		29. Collections: List, Set, Queue
+		30. Iteable & Iterator
+		31. Maps
+
+
+17. Inheritance: Building IS A relation (parent & child) between classes
+
+			Class X  extends  Class Y
+				 sub				super
+
+			Class Z extends Class Y
+				  sub			 super
+
+
+		  sub class: can inherit all the visible variables & methods from super class
+
+		  super class: can not inherit anything from sub class
+
+		  A class can only extend one class
+
+		  A class can be extended by multiple classes
+
+
+	    TesteBase
+			  driver
+
+			@BeforeMethod  {
+			  open browser
+			  maximizeBrowser
+			  implicitwait
+			  nevigateToURL
+			  }
+
+
+	    TestC lass1 extends TestBase
+
+	    TestClass2 extends TestBase
+
+	    TestClass3 extends TestBase
+
+    	...
+
+    	BasePage
+    		constructor(){
+    			PageFactory.initElement(driver, this )
+    		}
+
+    	pages extends BasePage:
+
+    		@FindBy(xpath = "")
+    		WebEelement name;
+
+
+	CarTask
+			ElectricCar:
+				charging()
+
+			LuxuryCar
+				massage();
+				seatHeater();
+				seatCooler();
+
+
+			Abstract Car
+				make, model, color, year, price..
+				drive(), toString()
+
+
+			Toyota extends Car
+
+			Honda extends Car
+
+			Mercedes extends Car implements LucuryCar
+
+			BMW extends Car implements LucuryCar
+
+			Tesla extends Car implements LuXuryCar, ElectricCar
+
+			Nio  extends Car implements LuXuryCar, ElectricCar
+
+
+
+18. Is A relation VS Has A relation
+
+		Is A relation: if the classes are in inheritance relation
+			class Car{
+
+			}
+
+			class Toyota extends Car{     Toyota Is A Car
+
+			}
+
+
+		Has A relation: if the class is used in another class that does not have Is A relation
+
+			ParkingLot{     ParkingLot Has A Toyota
+				Toyota
+				Car
+
+			}
+
+
+19. Method Overriding: giving different implementation to the method
+
+						MUSt happen in subclass
+
+						returnType, methodName, Parameters MUST be same
+
+						Access modifier MUST be same or more visible
+
+						we cannot override:
+								final, private, static
+
+
+
+20. Final keyword: unchangable
+
+			variables: can not be reassigned
+
+			methods: cannot be overriden
+
+			class: cannot be inherited
+
+
+
+21. Abstraction: hiding the implementation details
+				 putting the focus on essentials without worrying about small details
+
+
+				 Abstract method: method without the body
+				 				  meant to be overriden (can not be final, private, static)
+
+				2 ways:
+					1. abstract class: meant to be super class (can not be final)
+									  can not create object
+
+									  abstract class can have all the methods & variables of regualr class can have
+
+
+					2. interface: blueprint of the class, meant to be implemented (cannot final)
+									public is the only accessmodifier
+									cannot create object
+
+
+						ex:
+							WebDriver, WebElement, List, JavaScritpExecuter, TakeScreenShot...
+
+
+
+22. abstract class vs interface:
+
+			one class can extend one abstract class only
+			one class implement multiple interface
+			one interface can extend multiple interfaces
+
+
+
+23. Polymorphism: ability of the object taking on many forms
+
+				parent being referenced to child objects
+
+				reference type decides whats accessible
+
+				object type decides which implementation to be executed
+
+		Driver
+			WebDriver getDriver(browserName){
+
+			}
+
+
+		WebDriver driver;
+		( (TakeScreenShot)driver ).takeScrenShot
+		( (JavaScriptExecuter)driver ).executerScript
+
+		List
+		Set
+
+
+
+24. reference type casting:
+
+			up casting: casting the smaller type to larger type (automatically done)
+
+			down casting: casting the larger type to smaller type (manually done)
+
+
+
+25. Exceptions: chekced or unchecked
+
+		unchecked exception: occurs during the runtime
+
+		checked exception: occurs during compile time
+
+	throw: used for manually throw exception
+
+
+26. Exception handlings:
+
+			1. try & catch blocks: can handle unchecked & checked
+
+					try{
+						exception codes
+					}catch(ExceptionType){
+						e.printstackTrace()
+					}
+
+			2. throws: can handle checked exception. used within the method signature
+
+
+
+27. final vs finally vs finalize:
+
+		final: keyword
+
+		finally: block
+
+		finalize: method
+
+
+
+29. Collection: Data structure
+                size is dynamic compared to Array. only supports non-primitives
+                has lots of ready method
+
+		List (I): accepts duplicates, has index
+
+                            ** When we make list as a reference and we can create object of any classes(bellow)
+
+			ArrayList (C): Array based class. retrieving the data is faster ( get() )
+
+			LinkedList (C): doubly linked->adding & removing are faster. "node" helps element being linked to the list without shifting
+
+			Vector (C): synchronized (by using synchronized key word)===> thread-safe(means one thread at a time)
+
+			   Stack (C): synchronized ===> thread-safe. LIFO ( pop() )
+
+
+		Set (I): does not accept duplicates, does not have index
+
+			HashSet (C): order is not guaranteed
+
+			LinkedHashSet (C): keeps the insertion order
+
+			TreeSet (C): ascending order. It does NOT allow null key word
+
+
+		Queue (I): accepts duplicates, does not have index. FIFO ( poll() )
+
+
+
+30. Map (I): key & value. key cannot be duplicated. dynamic sized. no index
+
+		HashMap (C): order is random, accepts null
+
+		LinkedHashMap (C): insertion order is kept as it is. accepts null
+
+		HashTable (C): order is random, does not accepts null. synchronized==> thread-safe
+
+		TreeMap (C): ascending order, does not accept null
